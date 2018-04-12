@@ -16,8 +16,8 @@
             <tbody>
                 <tr v-for="(item, index) in data" :key="index">
                     <td v-text="item.name"></td>
-                    <td v-text="item.volume"></td>
-                    <td v-text="item.price.amount"></td>
+                    <td v-text="volume(item.volume)"></td>
+                    <td v-text="amount(item.price.amount)"></td>
                 </tr>
             </tbody>
         </table>
@@ -40,6 +40,14 @@ export default {
     },
 
     methods: {
+        volume(value) {
+            return Math.round(value).toFixed(0);
+        },
+
+        amount(value) {
+            return (Math.round(value * 100) / 100).toFixed(2);
+        },
+
         fetchData() {
             clearInterval(this.interval);
 
@@ -74,6 +82,7 @@ export default {
 }
 
 .table td, .table th {
-    padding: .25rem .5rem;
+    padding: 0 .5rem;
+    height: 50px;
 }
 </style>
