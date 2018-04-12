@@ -12100,6 +12100,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -12149,9 +12151,14 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("button", { attrs: { disabled: _vm.loading || _vm.fetching } }, [
-      _vm._v("Обновить данные")
-    ]),
+    _c(
+      "button",
+      {
+        attrs: { disabled: _vm.loading || _vm.fetching },
+        on: { click: _vm.fetchData }
+      },
+      [_vm._v("\n        Обновить данные\n    ")]
+    ),
     _vm._v(" "),
     _vm.loading
       ? _c("p", [_vm._v("Данные загружаются...")])

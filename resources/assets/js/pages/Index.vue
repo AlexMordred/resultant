@@ -1,6 +1,8 @@
 <template>
     <div>
-        <button :disabled="loading || fetching">Обновить данные</button>
+        <button :disabled="loading || fetching" @click="fetchData">
+            Обновить данные
+        </button>
 
         <p v-if="loading">Данные загружаются...</p>
 
