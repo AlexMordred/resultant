@@ -29,6 +29,7 @@ export default {
             data: [],
             loading: true,
             fetching: true,
+            interval: null,
         };
     },
 
@@ -38,6 +39,8 @@ export default {
 
     methods: {
         fetchData() {
+            clearInterval(this.interval);
+
             this.fetching = true;
 
             axios.get('/data')
@@ -46,7 +49,13 @@ export default {
 
                     this.loading = false;
                     this.fetching = false;
+
+                    this.startAutoRefresh();
                 });
+        },
+
+        startAutoRefresh() {
+            this.interval = setInterval(this.fetchData, 15000);
         }
     }
 }

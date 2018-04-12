@@ -12106,7 +12106,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             data: [],
             loading: true,
-            fetching: true
+            fetching: true,
+            interval: null
         };
     },
     created: function created() {
@@ -12118,6 +12119,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         fetchData: function fetchData() {
             var _this = this;
 
+            clearInterval(this.interval);
+
             this.fetching = true;
 
             axios.get('/data').then(function (_ref) {
@@ -12127,7 +12130,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                 _this.loading = false;
                 _this.fetching = false;
+
+                _this.startAutoRefresh();
             });
+        },
+        startAutoRefresh: function startAutoRefresh() {
+            this.interval = setInterval(this.fetchData, 15000);
         }
     }
 });
